@@ -15,26 +15,18 @@ There is horrible stuff about Telenors as well and this repo will be updated now
 
 ![Screenshot](.previews/telenors-password.txt)
 
-    Default Login: Kundservice 
-    Default Password: F0rth4stargran3n
-
-For add the SRP2 do as it say:
-
-    newsrpuser -f  -u Kundservice -p F0rth4saragran3n
-    S=$(echo $SRP2|cut -d' ' -f1)
-    V=$(echo $SRP2|cut -d' ' -f2)
-	
-And now just add it to settings:
-
-    uci set web.usr_remote.srp_salt=${S}
-    uci set web.usr_remote.srp_lt=${V}
-    uci commit
-	 
-Done 
+Default Login: Kundservice 
+Default Password: F0rth4stargran3n
 
 How come nobody else have found this earlier or leaked this? The Router has been used since 2015, noob ISP. 
 
 # Logviewer
+
+How to get logviewer showing up
+
+![Screenshot](.previews/logviewer_telenor.gif)
+
+Screenshot 
 
 ![Screenshot](.previews/telenor_plasmo-password.png)
 
@@ -44,7 +36,23 @@ First thing that might help anyone that does know how to get logviewer shown up,
 
 ![Screenshot](.previews/tcpdump_telenor.gif)
 
-	Login
-	Rightclick on any other modal in upper right corner and just change the action to
+Login and rightclick on any other modal in upper right corner and just change the action to
 
 	modals/diagnostics-tcpdump-modal.lp
+
+# Export config
+
+Via developer console on prefered browser
+
+![Screenshot](.previews/export_config.gif)
+
+
+Via curl command for Linux
+
+    #!/bin/bash
+
+    CSFRTOKEN=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf)
+
+	curl 'https://192.168.10.1/modals/gateway-modal.lp' 
+	-H 'Cookie: sessionID=4b33240b9ba8641e3c0bf0ffeb32cb17eac8393556aa1c0fc832c5ee28e2fc6d; fileDownload=true' -H 'Sec-Fetch-Dest: empty' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Site: same-origin' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' --data-raw 'action=export_config&CSRFtoken=${CSFRTOKEN}'
+

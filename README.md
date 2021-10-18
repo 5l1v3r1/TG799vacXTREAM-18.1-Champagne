@@ -15,8 +15,22 @@ There is horrible stuff about Telenors as well and this repo will be updated now
 
 ![Screenshot](.previews/telenors-password.txt)
 
-Default Login: Kundservice 
-Default Password: F0rth4stargran3n
+    Default Login: Kundservice 
+    Default Password: F0rth4stargran3n
+
+For add the SRP2 do as it say:
+
+    newsrpuser -f  -u Kundservice -p F0rth4saragran3n
+    S=$(echo $SRP2|cut -d' ' -f1)
+    V=$(echo $SRP2|cut -d' ' -f2)
+	
+And now just add it to settings:
+
+    uci set web.usr_remote.srp_salt=${S}
+    uci set web.usr_remote.srp_lt=${V}
+    uci commit
+	 
+Done 
 
 How come nobody else have found this earlier or leaked this? The Router has been used since 2015, noob ISP. 
 

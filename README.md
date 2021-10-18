@@ -4,7 +4,11 @@ On my new blog you might find other things for my projects as well in future:
 
 	https://nr1.nu
 
-This wiki wont be as big as the one from Telia but I just got one of those (actually i wanted a telia one) but yeah, there is not much info about this router wich is much more secure then telias, but there is some tricks  I didnt see and some horrible stuff about Telenors as well and this repo will be updated now and then.
+This wiki wont be as big as the one from Telia but I just got one of those (actually i wanted a telia one) but yeah, there is not much info 
+about this router online I figured out and after few hours of playing around there is some stuff that I want to share.
+The router seems to be more secured then telias but I doubt, they store passwords in plaintext aswell. 
+
+There is horrible stuff about Telenors as well and this repo will be updated now and then.
 
 
 # First out, Telenors password is also stored in plaintext, 
@@ -20,7 +24,7 @@ How come nobody else have found this earlier or leaked this? The Router has been
 
 ![Screenshot](.previews/telenor_plasmo-password.png)
 
-First thing that might help anyone that does know how to get logviewer shown up, passwords are stored here also :) 
+First thing that might help anyone that does know how to get logviewer shown up, passwords are stored here also for variuos features :) 
 
 
 

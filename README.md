@@ -15,8 +15,8 @@ There is horrible stuff about Telenors as well and this repo will be updated now
 
 ![Screenshot](.previews/telenors-password.txt)
 
-Default Login: Kundservice 
-Default Password: F0rth4stargran3n
+	Default Login: Kundservice 
+	Default Password: F0rth4stargran3n
 
 How come nobody else have found this earlier or leaked this? The Router has been used since 2015, noob ISP. 
 

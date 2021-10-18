@@ -52,7 +52,15 @@ Via curl command for Linux
     #!/bin/bash
 
     CSFRTOKEN=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf)
+    SESSIONID=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf -v 2>&1|grep -E 'sessionID'|cut -d'=' -f2|cut -d';' -f1)
 
-	curl 'https://192.168.10.1/modals/gateway-modal.lp' 
-	-H 'Cookie: sessionID=4b33240b9ba8641e3c0bf0ffeb32cb17eac8393556aa1c0fc832c5ee28e2fc6d; fileDownload=true' -H 'Sec-Fetch-Dest: empty' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Site: same-origin' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' --data-raw 'action=export_config&CSRFtoken=${CSFRTOKEN}'
+	curl -sL --insecure 'https://192.168.10.1/modals/gateway-modal.lp' \  
+	-H 'Cookie: sessionID=4b33240b9ba8641e3c0bf0ffeb32cb17eac8393556aa1c0fc832c5ee28e2fc6d; fileDownload=true' \
+	-H 'Sec-Fetch-Dest: empty' \
+ 	-H 'Sec-Fetch-Mode: cors' \ 
+	-H 'Sec-Fetch-Site: same-origin' \
+	-H 'Pragma: no-cache' \
+	-H 'Cache-Control: no-cache' \
+	-H "Cookie: sessionID=$SESSIONID fileDownload=true" \
+	--data-raw "action=export_config&CSRFtoken=$CSFRTOKEN" --insecure
 

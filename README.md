@@ -26,5 +26,11 @@ How come nobody else have found this earlier or leaked this? The Router has been
 
 First thing that might help anyone that does know how to get logviewer shown up, passwords are stored here also for variuos features :) 
 
+# Tcpdump 
 
+![Screenshot](.previews/tcpdump_telenor.gif)
 
+	Login
+	Rightclick on any other modal in upper right corner and just change the action to
+
+	modals/diagnostics-tcpdump-modal.lp

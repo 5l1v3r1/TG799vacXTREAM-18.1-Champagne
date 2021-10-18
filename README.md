@@ -36,16 +36,21 @@ First thing that might help anyone that does know how to get logviewer shown up,
 
 ![Screenshot](.previews/tcpdump_telenor.gif)
 
-Login and rightclick on any other modal in upper right corner and just change the action to
+Login and rightclick on any other modal in upper right corner and just change the data-modal below:
 
 	modals/diagnostics-tcpdump-modal.lp
+
+It also works for: 
 
 # Export config
 
 Via developer console on prefered browser
 
-![Screenshot](.previews/export_config.gif)
+Via developer console
 
+    $.post('modals/gateway-modal.lp',{ action: "export_config",CSRFtoken: $("meta[name=CSRFtoken]").attr("content") },wait_for_webserver_down,"json");
+
+![Screenshot](.previews/export_config.gif)
 
 Via curl command for Linux
 

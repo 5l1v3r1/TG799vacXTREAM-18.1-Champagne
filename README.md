@@ -15,16 +15,16 @@ There is horrible stuff about Telenors as well and this repo will be updated now
 
 ![Screenshot](.previews/telenors-password.txt)
 
-Default Login: Kundservice 
-Default Password: F0rth4stargran3n
+	Default Login: Kundservice 
+	Default Password: F0rth4stargran3n
 
-How come nobody else have found this earlier or leaked this? The Router has been used since 2015, noob ISP. 
+__How come nobody else have found this earlier or leaked this? The Router has been used since 2015, noobish ISP.__
 
 # Logviewer
 
 How to get logviewer showing up
 
-![Screenshot](.previews/logviewer_telenor.gif)
+![Screenshot](.previews/telenor_logviewer.gif)
 
 Screenshot 
 
@@ -34,7 +34,7 @@ First thing that might help anyone that does know how to get logviewer shown up,
 
 # Tcpdump 
 
-![Screenshot](.previews/tcpdump_telenor.gif)
+![Screenshot](.previews/telenor_tcpdump.gif)
 
 Login and rightclick on any other modal in upper right corner and just change the data-modal below:
 
@@ -46,26 +46,53 @@ It also works for:
 
 Via developer console on prefered browser
 
-Via developer console
+![Screenshot](.previews/telenor_export_config_console.gif)
 
+```js
     $.post('modals/gateway-modal.lp',{ action: "export_config",CSRFtoken: $("meta[name=CSRFtoken]").attr("content") },wait_for_webserver_down,"json");
+```
+
+```js
+$.post(
+	'modals/gateway-modal.lp',{ 
+	 action: "export_config",
+	 CSRFtoken: $("meta[name=CSRFtoken]").attr("content") },
+	 'wait_for_webserver_down',"json"
+);
+```
 
 ![Screenshot](.previews/export_config.gif)
 
 Via curl command for Linux
 
-    #!/bin/bash
+```shell
+#!/bin/bash
 
-    CSFRTOKEN=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf)
-    SESSIONID=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf -v 2>&1|grep -E 'sessionID'|cut -d'=' -f2|cut -d';' -f1)
+### Below can be added if you wanna get csfr_token and session_id 
+CSFRTOKEN=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf)
+SESSIONID=$(curl -sL --insecure 'https://192.168.10.1/login.lp?action=getcsrf -v 2>&1|grep -E 'sessionID'|cut -d'=' -f2|cut -d';' -f1)
 
-	curl -sL --insecure 'https://192.168.10.1/modals/gateway-modal.lp' \  
-	-H 'Cookie: sessionID=4b33240b9ba8641e3c0bf0ffeb32cb17eac8393556aa1c0fc832c5ee28e2fc6d; fileDownload=true' \
-	-H 'Sec-Fetch-Dest: empty' \
- 	-H 'Sec-Fetch-Mode: cors' \ 
-	-H 'Sec-Fetch-Site: same-origin' \
-	-H 'Pragma: no-cache' \
-	-H 'Cache-Control: no-cache' \
-	-H "Cookie: sessionID=$SESSIONID fileDownload=true" \
-	--data-raw "action=export_config&CSRFtoken=$CSFRTOKEN" --insecure
+#### Notice
+#### Copy and paste below will work fine, change sessionID and csfrtoken by above urls:
+
+curl 'https://192.168.10.1/modals/gateway-modal.lp' \
+  -H 'Connection: keep-alive' \
+  -H 'sec-ch-ua: "Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"' \
+  -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+  -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
+  -H 'X-Requested-With: XMLHttpRequest' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'Origin: https://192.168.10.1' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://192.168.10.1/' \
+  -H 'Accept-Language: en-GB,en-US;q=0.9,en;q=0.8' \
+  -H "Cookie: sessionID=${SESSIONID}" \
+  --data-raw "action=export_config&CSRFtoken=${CSFRTOKEN}" \
+  --compressed \
+  --insecure
+
 
